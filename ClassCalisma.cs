@@ -11,19 +11,41 @@ namespace class_calisma
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+
+            string dosya="MyText.txt";
+            FileStream fs = new FileStream(dosya, FileMode.Append, FileAccess.Write);
+
             Kisi kisi = new Kisi();
             kisi.Adi = "b";
             Console.WriteLine(kisi.Adi);
+
             Kisi ahmet = new Kisi();
             ahmet.Adi = "Ahmet";
             Console.WriteLine("Adı    :" + ahmet.Adi);
             ahmet.Soyadi = "Kabak";
             Console.WriteLine("Soyadı :" + ahmet.Soyadi);
+
+            
+            StreamWriter sw = new StreamWriter(fs);
+            Console.Write("Adı : ");
+            kisi.Adi = Console.ReadLine().Trim();
+            sw.WriteLine($"Adı : {kisi.Adi}");
+            Console.Write("Soyadı : ");
+            kisi.Soyadi = Console.ReadLine().Trim();
+            sw.WriteLine($"Soyadı : {kisi.Soyadi}");
+            
+
+            // while(true)
+            // {
+            //     Console.Write("")
+            // }
+
             bool mailGecerliMi = true;
             do
             {
                 Console.Write("Mail adresinizi giriniz :");
                 ahmet.Mail = Console.ReadLine().Trim();
+                sw.WriteLine($"Mail : {ahmet.Mail}");
                 mailGecerliMi = !String.IsNullOrEmpty(ahmet.Mail);
 
             } while (!mailGecerliMi);
@@ -34,6 +56,7 @@ namespace class_calisma
             {
                 Console.Write("Lütfen Şifrenizi Oluşturunuz :");
                 ahmet.Sifre = Console.ReadLine().Trim();
+                sw.WriteLine($"Sifre : {ahmet.Sifre}");
                 sifreGecerliMi = !String.IsNullOrEmpty(ahmet.Sifre);
 
             } while (!sifreGecerliMi);
@@ -66,11 +89,14 @@ namespace class_calisma
             {
                 Console.Write("Telefon numaranızı giriniz : ");
                 ahmet.Tel = Console.ReadLine().Trim();
+                sw.WriteLine($"Tel No : {ahmet.Tel}");
                 telGecerli = (!String.IsNullOrEmpty(ahmet.Tel) && ahmet.TelDogrulama(ahmet.Tel));
 
 
 
             } while (!telGecerli);
+            sw.Flush();
+            sw.Close();
             Console.Clear();
             Console.WriteLine("Telefon numaranız başarı ile girilmiştir.");
 
@@ -177,10 +203,10 @@ namespace class_calisma
 
 
 
-            
 
-           
-            
+
+
+
 
 
 
