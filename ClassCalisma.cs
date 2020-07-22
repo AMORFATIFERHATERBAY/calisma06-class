@@ -12,8 +12,8 @@ namespace class_calisma
         {
             Console.WriteLine("Hello World!");
 
-            string dosya="MyText.txt";
-            FileStream fs = new FileStream(dosya, FileMode.Append, FileAccess.Write);
+            string dosya = "MyText.txt";
+            FileStream fs = new FileStream(dosya, FileMode.Append);
 
             Kisi kisi = new Kisi();
             kisi.Adi = "b";
@@ -25,7 +25,7 @@ namespace class_calisma
             ahmet.Soyadi = "Kabak";
             Console.WriteLine("Soyadı :" + ahmet.Soyadi);
 
-            
+
             StreamWriter sw = new StreamWriter(fs);
             Console.Write("Adı : ");
             kisi.Adi = Console.ReadLine().Trim();
@@ -33,7 +33,7 @@ namespace class_calisma
             Console.Write("Soyadı : ");
             kisi.Soyadi = Console.ReadLine().Trim();
             sw.WriteLine($"Soyadı : {kisi.Soyadi}");
-            
+
 
             // while(true)
             // {
@@ -97,7 +97,20 @@ namespace class_calisma
             } while (!telGecerli);
             sw.Flush();
             sw.Close();
-            Console.Clear();
+            //Console.Clear();
+
+            FileStream fs1 = new FileStream(dosya, FileMode.Open);
+            StreamReader sr = new StreamReader(fs1);
+            string lines;
+            while ((lines = sr.ReadLine()) != null)
+                Console.WriteLine(lines);
+            fs.Close();
+
+
+
+
+
+
             Console.WriteLine("Telefon numaranız başarı ile girilmiştir.");
 
             //***************************************************************   

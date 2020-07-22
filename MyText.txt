@@ -1,5 +1,11 @@
+Adı : Bilal
+Soyadı : Meşe
+Mail : mese@gmail.com
+Sifre : ********
+Tel No : 05325551111
+
 Adı : Ahmet
 Soyadı : Kabak
-Mail : ahmet.kabak@gmail.com
+Mail : a.k@gmail.com
 Sifre : *******
 Tel No : 05325321212
