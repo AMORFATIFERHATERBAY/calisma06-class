@@ -1,0 +1,7 @@
+John;Bolton;;;
+İlhan;;@;05065321213;
+Dmitri;Karamazov;dmrti@gmail.com;05325632323;
+Zeki;Müren;zeki.müren@gmail.com;05054561213;
+Ahmet;Uçar;@mail.com;05325632323;
+semra;özel;cm@gmail.com;05465821232;
+Akif;Çelik;akif@mail.com;05635325626;

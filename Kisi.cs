@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 //using class_calisma1;
 
 namespace class_calisma
@@ -50,10 +51,10 @@ namespace class_calisma
             set
             {
                 if (!Helper.KarakterSayisi(value, 11) || !Helper.IlkKarakter(value))// Helper.HarfKarakter(value)) // && Kisi.TelDogrulama(value)
-                
+
                     //Console.WriteLine("Telefon numaranız 11 haneli olmalı ve hafr karakter içermemelidir.");
                     return;
-                
+
 
                 tel = value;
             }
@@ -154,14 +155,44 @@ namespace class_calisma
             }
             return true;
         }
+        public void KisiKaydet(string dosya)
+        {
+            FileStream fs = new FileStream(dosya, FileMode.Append);
+            StreamWriter sw = new StreamWriter(fs);
+            sw.WriteLine($"{Adi};{Soyadi};{Mail};{Tel};{sifre}");
+            //sw.Flush();
+            sw.Close();
+        }
+        public Kisi[] KisileriOku(string dosya)
+        {
+            Kisi[] kisiler = { };
+            FileStream fs1 = new FileStream(dosya, FileMode.Open);
+            StreamReader sr = new StreamReader(fs1);
+            string lines;
+            while ((lines = sr.ReadLine()) != null)
+            {
+                string[] kisiÖzellik = lines.Split(';');
+                Kisi kisi = new Kisi();
+                kisi.Adi = kisiÖzellik[0];
+                kisi.Soyadi = kisiÖzellik[1];
+                kisi.Mail = kisiÖzellik[2];
+                kisi.Tel = kisiÖzellik[3];
 
-        // public bool MailKontrol(string girilenMail)
-        // {
-        //     if (!String.IsNullOrEmpty(girilenMail))
-        //     {
+                Array.Resize(ref kisiler, kisiler.Length + 1);
+                kisiler[kisiler.GetUpperBound(0)] = kisi;
 
-        //     }
-        // }
+
+            }
+            return kisiler;
+
+            
+        }
+        public override string ToString()
+        {
+            return $"Adi:{Adi}\nSoyadi:{Soyadi}\n\n";
+        }
+
+
 
     }
 

@@ -16,8 +16,8 @@ namespace class_calisma
             FileStream fs = new FileStream(dosya, FileMode.Append);
 
             Kisi kisi = new Kisi();
-            kisi.Adi = "b";
-            Console.WriteLine(kisi.Adi);
+            // kisi.Adi = "b";
+            // Console.WriteLine(kisi.Adi);
 
             Kisi ahmet = new Kisi();
             // ahmet.Adi = "Ahmet";
@@ -25,15 +25,18 @@ namespace class_calisma
             // ahmet.Soyadi = "Kabak";
             // Console.WriteLine("Soyadı :" + ahmet.Soyadi);
 
+            string newKisi = "";
 
             StreamWriter sw = new StreamWriter(fs);
             Console.Write("Adı : ");
-            kisi.Adi = Console.ReadLine().Trim();
-            sw.WriteLine($"Adı : {kisi.Adi}");
+            ahmet.Adi = Console.ReadLine().Trim();
+            sw.WriteLine($"Adı : {ahmet.Adi}");
+            newKisi += $"{ahmet.Adi};";
 
             Console.Write("Soyadı : ");
-            kisi.Soyadi = Console.ReadLine().Trim();
-            sw.WriteLine($"Soyadı : {kisi.Soyadi}");
+            ahmet.Soyadi = Console.ReadLine().Trim();
+            sw.WriteLine($"Soyadı : {ahmet.Soyadi}");
+            newKisi += $"{ahmet.Soyadi};";
 
 
             bool mailGecerliMi = true;
@@ -42,6 +45,7 @@ namespace class_calisma
                 Console.Write("Mail adresinizi giriniz :");
                 ahmet.Mail = Console.ReadLine().Trim();
                 sw.WriteLine($"Mail : {ahmet.Mail}");
+                newKisi += $"{ahmet.Mail};";
                 mailGecerliMi = !String.IsNullOrEmpty(ahmet.Mail);
 
             } while (!mailGecerliMi);
@@ -86,6 +90,7 @@ namespace class_calisma
                 Console.Write("Telefon numaranızı giriniz : ");
                 ahmet.Tel = Console.ReadLine().Trim();
                 sw.WriteLine($"Tel No : {ahmet.Tel}");
+                newKisi += $"{ahmet.Tel};";
                 sw.WriteLine();
                 telGecerli = (!String.IsNullOrEmpty(ahmet.Tel) && ahmet.TelDogrulama(ahmet.Tel));
 
@@ -95,6 +100,16 @@ namespace class_calisma
 
             sw.Flush();
             sw.Close();
+
+            string dosya1 = "MyText1.txt";
+            FileStream fs3 = new FileStream(dosya1, FileMode.Append);
+            StreamWriter sw1 = new StreamWriter(fs3);
+            sw1.WriteLine(newKisi);
+            sw1.Flush();
+            sw1.Close();
+
+            ahmet.KisiKaydet("MyText2.txt");
+
             //Console.Clear();
 
             // FileStream fs1 = new FileStream(dosya, FileMode.Open);
@@ -105,11 +120,16 @@ namespace class_calisma
             //     Console.WriteLine(lines);
             // fs1.Close();
 
+            Kisi kisiOkunan = new Kisi();
+            Kisi[] kisiListesi = kisiOkunan.KisileriOku("MyText2.txt");
+            foreach(Kisi i in kisiListesi)
+            Console.WriteLine(i);
+
             FileStream fs2 = new FileStream(dosya, FileMode.Open);
             StreamReader sr1 = new StreamReader(fs2);
 
             Console.Write("Aranılacak Adı Gririniz :");
-            string adi= Console.ReadLine().Trim();
+            string adi = Console.ReadLine().Trim();
 
             bool bulunduMu = false;
             while ((lines = sr1.ReadLine()) != null)
