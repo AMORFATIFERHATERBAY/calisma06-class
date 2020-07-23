@@ -9,3 +9,40 @@ Soyadı : Kabak
 Mail : a.k@gmail.com
 Sifre : *******
 Tel No : 05325321212
+
+Adı : John
+Soyadı : Steinbeck
+Mail : js@hotmail.com
+Sifre : *******
+Tel No : 05551231212
+
+Adı : Stefan
+Soyadı : Zweig
+Mail : stefan@yahoo.com
+Sifre : ********
+Tel No : 05461231212
+
+Adı : Fyodor
+Soyadı : Dostoyevski
+Mail : fyo@gmail.com
+Sifre : *********
+Tel No : 05325635656
+
+Adı : Honore De
+Soyadı : Balzac
+Mail : balzac@g.com
+Sifre : ********
+Tel No : 05325321214
+
+Adı : Anton
+Soyadı : Cehov
+Mail : ac@g.com
+Sifre : *********
+Tel No : 05556363211
+
+Adı : Gogol
+Soyadı : Gogol
+Mail : gogol@h.com
+Sifre : *********
+Tel No : 05454561213
+

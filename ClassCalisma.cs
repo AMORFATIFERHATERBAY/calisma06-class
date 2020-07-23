@@ -29,6 +29,7 @@ namespace class_calisma
             StreamWriter sw = new StreamWriter(fs);
             Console.Write("Adı : ");
             kisi.Adi = Console.ReadLine().Trim();
+            //sw.WriteLine();
             sw.WriteLine($"Adı : {kisi.Adi}");
             Console.Write("Soyadı : ");
             kisi.Soyadi = Console.ReadLine().Trim();
@@ -90,11 +91,13 @@ namespace class_calisma
                 Console.Write("Telefon numaranızı giriniz : ");
                 ahmet.Tel = Console.ReadLine().Trim();
                 sw.WriteLine($"Tel No : {ahmet.Tel}");
+                sw.WriteLine();
                 telGecerli = (!String.IsNullOrEmpty(ahmet.Tel) && ahmet.TelDogrulama(ahmet.Tel));
 
 
 
             } while (!telGecerli);
+            
             sw.Flush();
             sw.Close();
             //Console.Clear();
@@ -113,6 +116,7 @@ namespace class_calisma
 
             Console.WriteLine("Telefon numaranız başarı ile girilmiştir.");
 
+            //**************************String*******************************
             //***************************************************************   
             // Kisi oktay = new Kisi();
             // Console.WriteLine(oktay.TelDogrulama("05325321211"));
