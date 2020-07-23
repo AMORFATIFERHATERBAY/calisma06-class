@@ -20,26 +20,21 @@ namespace class_calisma
             Console.WriteLine(kisi.Adi);
 
             Kisi ahmet = new Kisi();
-            ahmet.Adi = "Ahmet";
-            Console.WriteLine("Adı    :" + ahmet.Adi);
-            ahmet.Soyadi = "Kabak";
-            Console.WriteLine("Soyadı :" + ahmet.Soyadi);
+            // ahmet.Adi = "Ahmet";
+            // Console.WriteLine("Adı    :" + ahmet.Adi);
+            // ahmet.Soyadi = "Kabak";
+            // Console.WriteLine("Soyadı :" + ahmet.Soyadi);
 
 
             StreamWriter sw = new StreamWriter(fs);
             Console.Write("Adı : ");
             kisi.Adi = Console.ReadLine().Trim();
-            //sw.WriteLine();
             sw.WriteLine($"Adı : {kisi.Adi}");
+
             Console.Write("Soyadı : ");
             kisi.Soyadi = Console.ReadLine().Trim();
             sw.WriteLine($"Soyadı : {kisi.Soyadi}");
 
-
-            // while(true)
-            // {
-            //     Console.Write("")
-            // }
 
             bool mailGecerliMi = true;
             do
@@ -97,21 +92,41 @@ namespace class_calisma
 
 
             } while (!telGecerli);
-            
+
             sw.Flush();
             sw.Close();
             //Console.Clear();
 
-            FileStream fs1 = new FileStream(dosya, FileMode.Open);
-            StreamReader sr = new StreamReader(fs1);
+            // FileStream fs1 = new FileStream(dosya, FileMode.Open);
+            // StreamReader sr = new StreamReader(fs1);
+
             string lines;
-            while ((lines = sr.ReadLine()) != null)
-                Console.WriteLine(lines);
-            fs.Close();
+            // while ((lines = sr.ReadLine()) != null)
+            //     Console.WriteLine(lines);
+            // fs1.Close();
 
+            FileStream fs2 = new FileStream(dosya, FileMode.Open);
+            StreamReader sr1 = new StreamReader(fs2);
 
+            Console.Write("Aranılacak Adı Gririniz :");
+            string adi= Console.ReadLine().Trim();
 
+            bool bulunduMu = false;
+            while ((lines = sr1.ReadLine()) != null)
+            {
+                if (lines == $"Adı : {adi}")
+                //if (lines == "Bilal")
+                {
+                    Console.WriteLine($"\nArama sonucu : {lines} bulundu.\n");
+                    bulunduMu = true;
+                    break;
+                }
 
+            }
+            if (!bulunduMu)
+                Console.WriteLine("\nArama sonucu bulunmadı.\n");
+
+            fs2.Close();
 
 
             Console.WriteLine("Telefon numaranız başarı ile girilmiştir.");
