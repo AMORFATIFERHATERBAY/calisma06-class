@@ -159,7 +159,7 @@ namespace class_calisma
         {
             FileStream fs = new FileStream(dosya, FileMode.Append);
             StreamWriter sw = new StreamWriter(fs);
-            sw.WriteLine($"{Adi};{Soyadi};{Mail};{Tel};{sifre}");
+            sw.WriteLine($"{Adi};{Soyadi};{Mail};{Tel};{sifre}"); //;{Convert.ToString(DogumTarihi)}
             //sw.Flush();
             sw.Close();
         }
@@ -177,8 +177,13 @@ namespace class_calisma
                 kisi.Soyadi = kisiÖzellik[1];
                 kisi.Mail = kisiÖzellik[2];
                 kisi.Tel = kisiÖzellik[3];
+                kisi.sifre = kisiÖzellik[4];
+                //kisi.DogumTarihi =Convert.ToDateTime(kisiÖzellik[5]);
+            
+                
 
                 Array.Resize(ref kisiler, kisiler.Length + 1);
+
                 kisiler[kisiler.GetUpperBound(0)] = kisi;
 
 
@@ -189,7 +194,7 @@ namespace class_calisma
         }
         public override string ToString()
         {
-            return $"Adi:{Adi}\nSoyadi:{Soyadi}\n\n";
+            return $"Adi :{Adi}\nSoyadi :{Soyadi}\nMail :{Mail}\nTel :{Tel}\nSifre :{sifre}\n\n"; //Doğum Tarihi :{DogumTarihi}\n
         }
 
 

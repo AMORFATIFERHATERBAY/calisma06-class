@@ -79,7 +79,10 @@ namespace class_calisma
 
                 }
             } while (sifreYanlisMi);
-            ahmet.DogumTarihi = new DateTime(1980, 05, 01);
+
+            Console.Write("Doğum Tarihini Griniz :");
+            //ahmet.DogumTarihi = new DateTime(1980, 05, 01);
+            ahmet.DogumTarihi = Convert.ToDateTime(Console.ReadLine());
             Console.WriteLine();
             Console.WriteLine("Doğum Tarihiniz :" + ahmet.DogumTarihi);
             Console.WriteLine("Yaşınız         :" + ahmet.Yas);
@@ -97,6 +100,8 @@ namespace class_calisma
 
 
             } while (!telGecerli);
+             Console.WriteLine("Telefon numaranız başarı ile girilmiştir.");
+
 
             sw.Flush();
             sw.Close();
@@ -149,8 +154,7 @@ namespace class_calisma
             fs2.Close();
 
 
-            Console.WriteLine("Telefon numaranız başarı ile girilmiştir.");
-
+           
             //**************************String*******************************
             //***************************************************************   
             // Kisi oktay = new Kisi();
