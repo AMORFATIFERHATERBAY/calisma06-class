@@ -36,7 +36,7 @@ namespace class_calisma
             }
             set
             {
-                if (!Helper.KarakterSayisi(value, 3))
+                if (!Helper.KarakterSayisi(value, 2))
                     return;
                 soyadi = value;
             }
@@ -107,6 +107,7 @@ namespace class_calisma
         {
             get
             {
+
                 return dogumTarihi;
             }
             set
@@ -159,7 +160,7 @@ namespace class_calisma
         {
             FileStream fs = new FileStream(dosya, FileMode.Append);
             StreamWriter sw = new StreamWriter(fs);
-            sw.WriteLine($"{Adi};{Soyadi};{Mail};{Tel};{sifre}"); //;{Convert.ToString(DogumTarihi)}
+            sw.WriteLine($"{Adi};{Soyadi};{Mail};{Tel};{sifre};{Convert.ToString(DogumTarihi)};{Yas};"); //;{Convert.ToString(DogumTarihi)}
             //sw.Flush();
             sw.Close();
         }
@@ -172,15 +173,25 @@ namespace class_calisma
             while ((lines = sr.ReadLine()) != null)
             {
                 string[] kisiÖzellik = lines.Split(';');
+
                 Kisi kisi = new Kisi();
-                kisi.Adi = kisiÖzellik[0];
-                kisi.Soyadi = kisiÖzellik[1];
-                kisi.Mail = kisiÖzellik[2];
-                kisi.Tel = kisiÖzellik[3];
-                kisi.sifre = kisiÖzellik[4];
-                //kisi.DogumTarihi =Convert.ToDateTime(kisiÖzellik[5]);
-            
-                
+                if (kisiÖzellik.Length >= 1)
+                    kisi.Adi = kisiÖzellik[0];
+                if (kisiÖzellik.Length >= 2)
+                    kisi.Soyadi = kisiÖzellik[1];
+                if (kisiÖzellik.Length >= 3)
+                    kisi.Mail = kisiÖzellik[2];
+                if (kisiÖzellik.Length >= 4)
+                    kisi.Tel = kisiÖzellik[3];
+                if (kisiÖzellik.Length >= 5)
+                    kisi.sifre = kisiÖzellik[4];
+                if (kisiÖzellik.Length >= 6)
+                    kisi.DogumTarihi = Convert.ToDateTime(kisiÖzellik[5]);
+
+
+
+
+
 
                 Array.Resize(ref kisiler, kisiler.Length + 1);
 
@@ -190,11 +201,40 @@ namespace class_calisma
             }
             return kisiler;
 
-            
+
+        }
+        public Kisi KisiyiGetir(Kisi[] kisiler, string parametre)
+        {
+            foreach (Kisi kisi in kisiler)
+            {
+                if (kisi.Adi.ToLower() == parametre.ToLower() || kisi.Soyadi.ToLower() == parametre.ToLower())
+                    return kisi;
+            }
+            return null; //new Kisi();
         }
         public override string ToString()
         {
-            return $"Adi :{Adi}\nSoyadi :{Soyadi}\nMail :{Mail}\nTel :{Tel}\nSifre :{sifre}\n\n"; //Doğum Tarihi :{DogumTarihi}\n
+            return $"Adi :{Adi}\nSoyadi :{Soyadi}\nMail :{Mail}\nTel :{Tel}\nSifre :{sifre}\nDoğum Tarihi :{DogumTarihi}\nYas :{Yas}\n\n"; //Doğum Tarihi :{DogumTarihi}\n
+        }
+        public void KisiSil(string adi, string yol)
+        {
+            string tempFile = Path.GetTempFileName();
+
+            using (var sr = new StreamReader(yol))
+            using (var sw = new StreamWriter(tempFile))
+            {
+                string line;
+
+                while ((line = sr.ReadLine()) != null)
+                {
+                    string[] kisiÖz = line.Split(';');
+                    if (kisiÖz[0] != adi)
+                        sw.WriteLine(line);
+                }
+            }
+
+            File.Delete(yol);
+            File.Move(tempFile, yol);
         }
 
 
