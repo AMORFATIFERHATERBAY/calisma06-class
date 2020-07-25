@@ -26,26 +26,25 @@ namespace class_calisma
 
                 if (secim == "c")
                 {
-                    string dosya = "MyText.txt";
-                    FileStream fs = new FileStream(dosya, FileMode.Append);
+                    // string dosya = "MyText.txt";
+                    // FileStream fs = new FileStream(dosya, FileMode.Append);
 
                     Kisi kisi = new Kisi();
-                    
 
                     Kisi ahmet = new Kisi();
-                    
+
 
                     //string newKisi = "";
 
-                    StreamWriter sw = new StreamWriter(fs);
+                    // StreamWriter sw = new StreamWriter(fs);
                     Console.Write("\nAdı : ");
                     ahmet.Adi = Console.ReadLine().Trim();
-                    sw.WriteLine($"Adı : {ahmet.Adi}");
+                    // sw.WriteLine($"Adı : {ahmet.Adi}");
                     // newKisi += $"{ahmet.Adi};";
 
                     Console.Write("\nSoyadı : ");
                     ahmet.Soyadi = Console.ReadLine().Trim();
-                    sw.WriteLine($"Soyadı : {ahmet.Soyadi}");
+                    // sw.WriteLine($"Soyadı : {ahmet.Soyadi}");
                     // newKisi += $"{ahmet.Soyadi};";
 
 
@@ -54,7 +53,7 @@ namespace class_calisma
                     {
                         Console.Write("\nMail adresinizi giriniz :");
                         ahmet.Mail = Console.ReadLine().Trim();
-                        sw.WriteLine($"Mail : {ahmet.Mail}");
+                        // sw.WriteLine($"Mail : {ahmet.Mail}");
                         // newKisi += $"{ahmet.Mail};";
                         mailGecerliMi = !String.IsNullOrEmpty(ahmet.Mail);
 
@@ -66,7 +65,7 @@ namespace class_calisma
                     {
                         Console.Write("\nLütfen Şifrenizi Oluşturunuz :");
                         ahmet.Sifre = Console.ReadLine().Trim();
-                        sw.WriteLine($"Sifre : {ahmet.Sifre}");
+                        // sw.WriteLine($"Sifre : {ahmet.Sifre}");
                         sifreGecerliMi = !String.IsNullOrEmpty(ahmet.Sifre);
 
                     } while (!sifreGecerliMi);
@@ -92,12 +91,9 @@ namespace class_calisma
 
 
                     Console.Write("\nDoğum Tarihini Griniz :");
-                    //ahmet.DogumTarihi = new DateTime(1980, 05, 01);
                     ahmet.DogumTarihi = Convert.ToDateTime(Console.ReadLine());
                     Console.WriteLine();
-                    //Console.WriteLine("Doğum Tarihiniz :" + ahmet.DogumTarihi);
-                    Console.WriteLine("Yaşınız         :" + ahmet.Yas);
-                    string dogumTarihi = Convert.ToString(ahmet.DogumTarihi);
+                    Console.WriteLine("Yaşınız             :" + ahmet.Yas);
 
 
                     bool telGecerli = true;
@@ -105,9 +101,9 @@ namespace class_calisma
                     {
                         Console.Write("\nTelefon numaranızı giriniz : ");
                         ahmet.Tel = Console.ReadLine().Trim();
-                        sw.WriteLine($"Tel No : {ahmet.Tel}");
+                        // sw.WriteLine($"Tel No : {ahmet.Tel}");
                         // newKisi += $"{ahmet.Tel};";
-                        sw.WriteLine();
+                        // sw.WriteLine();
                         telGecerli = (!String.IsNullOrEmpty(ahmet.Tel) && ahmet.TelDogrulama(ahmet.Tel));
 
 
@@ -116,8 +112,8 @@ namespace class_calisma
                     Console.WriteLine("Telefon numaranız başarı ile girilmiştir.");
 
 
-                    sw.Flush();
-                    sw.Close();
+                    // sw.Flush();
+                    // sw.Close();
 
 
                     // string dosya1 = "MyText1.txt";
@@ -130,23 +126,13 @@ namespace class_calisma
                     ahmet.KisiKaydet("MyText2.txt");
                 }
 
-                //Console.Clear();
 
-                // FileStream fs1 = new FileStream(dosya, FileMode.Open);
-                // StreamReader sr = new StreamReader(fs1);
-
-                // string lines;
-                // while ((lines = sr.ReadLine()) != null)
-                //     Console.WriteLine(lines);
-                // fs1.Close();
                 else if (secim == "r")
                 {
                     Kisi kisiOkunan = new Kisi();
                     Kisi[] kisiListesi = kisiOkunan.KisileriOku("MyText2.txt");
                     // foreach (Kisi i in kisiListesi)
                     //     Console.WriteLine(i);
-
-                    
 
                     Console.Write("Aramayı Gririniz :");
                     string adi = Console.ReadLine().Trim();
@@ -157,6 +143,99 @@ namespace class_calisma
                         Console.WriteLine("Kişi bulunamadı");
 
                 }
+                else if (secim == "u")
+                {
+                    //continue;
+                    Kisi guncelKisi = new Kisi();
+                    Kisi[] kisiListesi = guncelKisi.KisileriOku("MyText2.txt");
+                    Console.Write("Güncellenecek Kişiyi Gririniz :");
+                    string aranan = Console.ReadLine().Trim();
+                    Kisi bulunanKisi = guncelKisi.KisiyiGetir(kisiListesi,aranan);
+
+                    if(bulunanKisi!=null)
+                    {
+                    Console.WriteLine("Güncellenecek kişi bulundu.\n"+bulunanKisi);
+                    
+
+                    guncelKisi.KisiSil(aranan, "MyText2.txt");
+
+                    Console.WriteLine("Güncellenecek kişinin bilgilerini tekrar giriniz.");
+                    Console.Write("\nAdı : ");
+                    guncelKisi.Adi = Console.ReadLine().Trim();
+                    Console.Write("\nSoyadı : ");
+                    guncelKisi.Soyadi = Console.ReadLine().Trim();
+
+                    bool mailGecerliMi = true;
+                    do
+                    {
+                        Console.Write("\nMail adresinizi giriniz :");
+                        guncelKisi.Mail = Console.ReadLine().Trim();
+                        // sw.WriteLine($"Mail : {ahmet.Mail}");
+                        // newKisi += $"{ahmet.Mail};";
+                        mailGecerliMi = !String.IsNullOrEmpty(guncelKisi.Mail);
+
+                    } while (!mailGecerliMi);
+
+
+                    bool sifreGecerliMi = true;
+                    do
+                    {
+                        Console.Write("\nLütfen Şifrenizi Oluşturunuz :");
+                        guncelKisi.Sifre = Console.ReadLine().Trim();
+                        // sw.WriteLine($"Sifre : {ahmet.Sifre}");
+                        sifreGecerliMi = !String.IsNullOrEmpty(guncelKisi.Sifre);
+
+                    } while (!sifreGecerliMi);
+
+                    Console.WriteLine($"Sifreniz oluşturuldu : {guncelKisi.Sifre}");
+
+
+                    bool sifreYanlisMi = true;
+                    do
+                    {
+                        Console.Write("\nLütfen Şifrenizi Giriniz :");
+                        string girilenSifre = Console.ReadLine().Trim();
+                        sifreYanlisMi = !guncelKisi.SifreKontrol(girilenSifre);
+                        if (!sifreYanlisMi)
+                        { Console.WriteLine("Şifre eşleşti."); }
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Şifre eşleşmedi.");
+
+                        }
+                    } while (sifreYanlisMi);
+                    Console.Write("\nDoğum Tarihini Griniz :");
+                    guncelKisi.DogumTarihi = Convert.ToDateTime(Console.ReadLine());
+                    Console.WriteLine();
+                    Console.WriteLine("Yaşınız             :" + guncelKisi.Yas);
+
+                    bool telGecerli = true;
+                    do
+                    {
+                        Console.Write("\nTelefon numaranızı giriniz : ");
+                        guncelKisi.Tel = Console.ReadLine().Trim();
+                        // sw.WriteLine($"Tel No : {ahmet.Tel}");
+                        // newKisi += $"{ahmet.Tel};";
+                        // sw.WriteLine();
+                        telGecerli = (!String.IsNullOrEmpty(guncelKisi.Tel) && guncelKisi.TelDogrulama(guncelKisi.Tel));
+
+
+
+                    } while (!telGecerli);
+                    Console.WriteLine("Telefon numaranız başarı ile girilmiştir.");
+
+
+
+                    guncelKisi.KisiGuncelle("MyText2.txt");
+                     
+                    }
+                    else 
+                    {Console.WriteLine("Güncellenecek kişi bulunamadı"); continue;}
+
+                }
+
+                
                 else if (secim == "d")
                 {
                     Kisi kisiOkunan1 = new Kisi();

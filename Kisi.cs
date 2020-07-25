@@ -207,6 +207,17 @@ namespace class_calisma
         {
             return $"Adi :{Adi}\nSoyadi :{Soyadi}\nMail :{Mail}\nTel :{Tel}\nSifre :{sifre}\nDoğum Tarihi :{DogumTarihi}\nYas :{Yas}\n\n"; //Doğum Tarihi :{DogumTarihi}\n
         }
+        public void KisiGuncelle(string dosya)
+        {
+            FileStream fs = new FileStream(dosya, FileMode.Append);
+            StreamWriter sw = new StreamWriter(fs);
+            sw.WriteLine($"{Adi};{Soyadi};{Mail};{Tel};{sifre};{Convert.ToString(DogumTarihi)};{Yas};");
+
+            //sw.Flush();
+            sw.Close();
+            Console.WriteLine(">>Güncelleme işleminiz başarı ile gerçekleştirilmiştir.\n");
+
+        }
 
         public void KisiSil(string adi, string yol)
         {

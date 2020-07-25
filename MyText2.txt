@@ -1,5 +1,4 @@
 Zeki;Müren;zeki.müren@gmail.com;05054561213;123456as+;1.05.1980 00:00:00
 semra;özel;cm@gmail.com;05465821232;123456as+;1.05.1980 00:00:00
-Fatih;Kuş;fthkş@gmail.com;05554561213;xzy123+;23.12.2005 00:00:00;14;
-Burhan;Şafak;burhan@yahoo.com;05425641615;qaz456+;14.11.1997 00:00:00;22;
 Selim;Ataç;slm@gmail.com;05464561213;qwert1+;23.02.1995 00:00:00;25;
+Burhan;Şafak;burhan.safak@google.com;05363693639;qwe123+;7.05.1998 00:00:00;22;
