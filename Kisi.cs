@@ -160,9 +160,11 @@ namespace class_calisma
         {
             FileStream fs = new FileStream(dosya, FileMode.Append);
             StreamWriter sw = new StreamWriter(fs);
-            sw.WriteLine($"{Adi};{Soyadi};{Mail};{Tel};{sifre};{Convert.ToString(DogumTarihi)};{Yas};"); //;{Convert.ToString(DogumTarihi)}
+            sw.WriteLine($"{Adi};{Soyadi};{Mail};{Tel};{sifre};{Convert.ToString(DogumTarihi)};{Yas};");
+
             //sw.Flush();
             sw.Close();
+            Console.WriteLine(">> Kaydatme işleminiz başarı ile gerçekleştirilmiştir.");
         }
         public Kisi[] KisileriOku(string dosya)
         {
@@ -223,18 +225,32 @@ namespace class_calisma
             using (var sr = new StreamReader(yol))
             using (var sw = new StreamWriter(tempFile))
             {
+
                 string line;
+                bool silindiMi = false;
 
                 while ((line = sr.ReadLine()) != null)
                 {
                     string[] kisiÖz = line.Split(';');
-                    if (kisiÖz[0] != adi)
+                    if (kisiÖz[0].ToLower() != adi.ToLower())
                         sw.WriteLine(line);
+                    if (kisiÖz[0].ToLower() == adi.ToLower())
+                    {
+                        Console.WriteLine(">>Silme işlemi başarı ile gerçekleştirildi...");
+                        silindiMi = true;
+                        continue;
+                    }
                 }
+                if (!silindiMi)
+                    Console.WriteLine("Silinecek kişi bulunamadı ya da başarı ile silinemedi...");
+
+
             }
+
 
             File.Delete(yol);
             File.Move(tempFile, yol);
+
         }
 
 

@@ -14,14 +14,15 @@ namespace class_calisma
             string secim;
             do
             {
-                Console.WriteLine("Kaydetmek için          --> c");
-                Console.WriteLine("Okumak için             --> r");
+                Console.WriteLine("\nKaydetmek için          --> c");
+                Console.WriteLine("Okumak&Arama için       --> r");
                 Console.WriteLine("Güncelleme için         --> u");
                 Console.WriteLine("Silmek için             --> d");
-                Console.WriteLine("\nProgramdan çıkmak için  --> Q/q");
+                Console.WriteLine("\nProgramdan çıkmak için  --> Q/q\n");
 
                 Console.Write("İşleminizi seçiniz : ");
                 secim = Console.ReadLine().ToLower();
+                Console.WriteLine();
 
                 if (secim == "c")
                 {
@@ -29,27 +30,23 @@ namespace class_calisma
                     FileStream fs = new FileStream(dosya, FileMode.Append);
 
                     Kisi kisi = new Kisi();
-                    // kisi.Adi = "b";
-                    // Console.WriteLine(kisi.Adi);
+                    
 
                     Kisi ahmet = new Kisi();
-                    // ahmet.Adi = "Ahmet";
-                    // Console.WriteLine("Adı    :" + ahmet.Adi);
-                    // ahmet.Soyadi = "Kabak";
-                    // Console.WriteLine("Soyadı :" + ahmet.Soyadi);
+                    
 
-                    string newKisi = "";
+                    //string newKisi = "";
 
                     StreamWriter sw = new StreamWriter(fs);
                     Console.Write("\nAdı : ");
                     ahmet.Adi = Console.ReadLine().Trim();
                     sw.WriteLine($"Adı : {ahmet.Adi}");
-                    newKisi += $"{ahmet.Adi};";
+                    // newKisi += $"{ahmet.Adi};";
 
                     Console.Write("\nSoyadı : ");
                     ahmet.Soyadi = Console.ReadLine().Trim();
                     sw.WriteLine($"Soyadı : {ahmet.Soyadi}");
-                    newKisi += $"{ahmet.Soyadi};";
+                    // newKisi += $"{ahmet.Soyadi};";
 
 
                     bool mailGecerliMi = true;
@@ -58,7 +55,7 @@ namespace class_calisma
                         Console.Write("\nMail adresinizi giriniz :");
                         ahmet.Mail = Console.ReadLine().Trim();
                         sw.WriteLine($"Mail : {ahmet.Mail}");
-                        newKisi += $"{ahmet.Mail};";
+                        // newKisi += $"{ahmet.Mail};";
                         mailGecerliMi = !String.IsNullOrEmpty(ahmet.Mail);
 
                     } while (!mailGecerliMi);
@@ -109,7 +106,7 @@ namespace class_calisma
                         Console.Write("\nTelefon numaranızı giriniz : ");
                         ahmet.Tel = Console.ReadLine().Trim();
                         sw.WriteLine($"Tel No : {ahmet.Tel}");
-                        newKisi += $"{ahmet.Tel};";
+                        // newKisi += $"{ahmet.Tel};";
                         sw.WriteLine();
                         telGecerli = (!String.IsNullOrEmpty(ahmet.Tel) && ahmet.TelDogrulama(ahmet.Tel));
 
@@ -146,11 +143,10 @@ namespace class_calisma
                 {
                     Kisi kisiOkunan = new Kisi();
                     Kisi[] kisiListesi = kisiOkunan.KisileriOku("MyText2.txt");
-                    foreach (Kisi i in kisiListesi)
-                        Console.WriteLine(i);
+                    // foreach (Kisi i in kisiListesi)
+                    //     Console.WriteLine(i);
 
-                    // FileStream fs2 = new FileStream(dosya, FileMode.Open);
-                    // StreamReader sr1 = new StreamReader(fs2);
+                    
 
                     Console.Write("Aramayı Gririniz :");
                     string adi = Console.ReadLine().Trim();
@@ -164,10 +160,11 @@ namespace class_calisma
                 else if (secim == "d")
                 {
                     Kisi kisiOkunan1 = new Kisi();
-                    Console.Write("Silinecek Kişiyi Gririniz :");
+                    Console.Write("\nSilinecek Kişiyi Gririniz :");
                     string adi1 = Console.ReadLine().Trim();
 
                     kisiOkunan1.KisiSil(adi1, "MyText2.txt");
+
                 }
 
 
