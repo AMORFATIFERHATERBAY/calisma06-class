@@ -50,9 +50,7 @@ namespace class_calisma
             }
             set
             {
-                if (!Helper.KarakterSayisi(value, 11) || !Helper.IlkKarakter(value))// Helper.HarfKarakter(value)) // && Kisi.TelDogrulama(value)
-
-                    //Console.WriteLine("Telefon numaranız 11 haneli olmalı ve hafr karakter içermemelidir.");
+                if (!Helper.KarakterSayisi(value, 11) || !Helper.IlkKarakter(value))
                     return;
 
 
@@ -139,23 +137,18 @@ namespace class_calisma
         {
             for (int i = 0; i < telNo.Length; ++i)
             {
-                // if (Char.Equals(telNo[0], '0'))
-                // {
+
                 if (!Char.IsDigit(telNo[i]))
                 {
                     Console.WriteLine("Lütfen Tel No olarak rakam giriniz.");
 
                     return false;
                 }
-                //}
-                // else
-                // {
-                //     Console.WriteLine("Telefon numaranızın ilk karateri '0' ile başlamalı.");
-                //     return false;
-                // }
+
             }
             return true;
         }
+
         public void KisiKaydet(string dosya)
         {
             FileStream fs = new FileStream(dosya, FileMode.Append);
@@ -166,6 +159,7 @@ namespace class_calisma
             sw.Close();
             Console.WriteLine(">> Kaydatme işleminiz başarı ile gerçekleştirilmiştir.");
         }
+
         public Kisi[] KisileriOku(string dosya)
         {
             Kisi[] kisiler = { };
@@ -191,20 +185,14 @@ namespace class_calisma
                     kisi.DogumTarihi = Convert.ToDateTime(kisiÖzellik[5]);
 
 
-
-
-
-
                 Array.Resize(ref kisiler, kisiler.Length + 1);
 
                 kisiler[kisiler.GetUpperBound(0)] = kisi;
 
-
             }
             return kisiler;
-
-
         }
+
         public Kisi KisiyiGetir(Kisi[] kisiler, string parametre)
         {
             foreach (Kisi kisi in kisiler)
@@ -214,10 +202,12 @@ namespace class_calisma
             }
             return null; //new Kisi();
         }
+
         public override string ToString()
         {
             return $"Adi :{Adi}\nSoyadi :{Soyadi}\nMail :{Mail}\nTel :{Tel}\nSifre :{sifre}\nDoğum Tarihi :{DogumTarihi}\nYas :{Yas}\n\n"; //Doğum Tarihi :{DogumTarihi}\n
         }
+
         public void KisiSil(string adi, string yol)
         {
             string tempFile = Path.GetTempFileName();
