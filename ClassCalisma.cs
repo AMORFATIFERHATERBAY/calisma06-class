@@ -32,6 +32,7 @@ namespace class_calisma
                     Kisi kisi = new Kisi();
 
                     Kisi ahmet = new Kisi();
+                   
 
 
                     //string newKisi = "";
