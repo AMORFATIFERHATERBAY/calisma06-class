@@ -2,3 +2,6 @@ Zeki;Müren;zeki.müren@gmail.com;05054561213;123456as+;1.05.1980 00:00:00
 semra;özel;cm@gmail.com;05465821232;123456as+;1.05.1980 00:00:00
 Selim;Ataç;slm@gmail.com;05464561213;qwert1+;23.02.1995 00:00:00;25;
 Burhan;Şafak;burhan.safak@google.com;05363693639;qwe123+;7.05.1998 00:00:00;22;
+Martin;Eden;mart@gmail.com;03562563636;qwert1+;12.11.1906 00:00:00;113;
+Fyodor;Dostoyevski;fyodor@gmail.com;05663454545;qwert2+;12.11.1821 00:00:00;198;
+Jonathan;Swift;j.swift@gmail.com;05363663366;swift1+;12.10.1880 00:00:00;140;

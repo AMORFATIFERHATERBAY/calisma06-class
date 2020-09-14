@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Collections;
 //using class_calisma1;
 
 namespace class_calisma
@@ -52,7 +53,6 @@ namespace class_calisma
             {
                 if (!Helper.KarakterSayisi(value, 11) || !Helper.IlkKarakter(value))
                     return;
-
 
                 tel = value;
             }
@@ -115,7 +115,6 @@ namespace class_calisma
 
         }
 
-
         public bool SifreKontrol(string girilenSifre)
         {
             if (girilenSifre.Length != sifre.Length)
@@ -157,7 +156,7 @@ namespace class_calisma
 
             //sw.Flush();
             sw.Close();
-            Console.WriteLine(">> Kaydatme işleminiz başarı ile gerçekleştirilmiştir.");
+            Console.WriteLine(">> Kaydetme işleminiz başarı ile gerçekleştirilmiştir.");
         }
 
         public Kisi[] KisileriOku(string dosya)
@@ -165,6 +164,7 @@ namespace class_calisma
             Kisi[] kisiler = { };
             FileStream fs1 = new FileStream(dosya, FileMode.Open);
             StreamReader sr = new StreamReader(fs1);
+
             string lines;
             while ((lines = sr.ReadLine()) != null)
             {
@@ -184,16 +184,67 @@ namespace class_calisma
                 if (kisiÖzellik.Length >= 6)
                     kisi.DogumTarihi = Convert.ToDateTime(kisiÖzellik[5]);
 
+                // Array.Resize(ref kisiler, kisiler.Length + 1);
 
-                Array.Resize(ref kisiler, kisiler.Length + 1);
+                // kisiler[kisiler.GetUpperBound(0)] = kisi;
 
-                kisiler[kisiler.GetUpperBound(0)] = kisi;
+                ArrayList alist = new ArrayList(0);
+                alist.Add(kisi);
+
 
             }
             return kisiler;
         }
 
+        public ArrayList KisileriOku1(string dosya)
+        {
+            
+            FileStream fs1 = new FileStream(dosya, FileMode.Open);
+            StreamReader sr = new StreamReader(fs1);
+
+            ArrayList alist = new ArrayList(0);
+
+            string lines;
+            while ((lines = sr.ReadLine()) != null)
+            {
+                string[] kisiÖzellik = lines.Split(';');
+
+                Kisi kisi = new Kisi();
+                if (kisiÖzellik.Length >= 1)
+                    kisi.Adi = kisiÖzellik[0];
+                if (kisiÖzellik.Length >= 2)
+                    kisi.Soyadi = kisiÖzellik[1];
+                if (kisiÖzellik.Length >= 3)
+                    kisi.Mail = kisiÖzellik[2];
+                if (kisiÖzellik.Length >= 4)
+                    kisi.Tel = kisiÖzellik[3];
+                if (kisiÖzellik.Length >= 5)
+                    kisi.sifre = kisiÖzellik[4];
+                if (kisiÖzellik.Length >= 6)
+                    kisi.DogumTarihi = Convert.ToDateTime(kisiÖzellik[5]);
+
+                // Array.Resize(ref kisiler, kisiler.Length + 1);
+
+                // kisiler[kisiler.GetUpperBound(0)] = kisi;
+
+
+                alist.Add(kisi);
+
+
+            }
+            return alist;
+        }
+
         public Kisi KisiyiGetir(Kisi[] kisiler, string parametre)
+        {
+            foreach (Kisi kisi in kisiler)
+            {
+                if (kisi.Adi.ToLower() == parametre.ToLower() || kisi.Soyadi.ToLower() == parametre.ToLower())
+                    return kisi;
+            }
+            return null; //new Kisi();
+        }
+         public Kisi KisiyiGetir1(ArrayList kisiler, string parametre)
         {
             foreach (Kisi kisi in kisiler)
             {
@@ -245,19 +296,13 @@ namespace class_calisma
                 if (!silindiMi)
                     Console.WriteLine("Silinecek kişi bulunamadı ya da başarı ile silinemedi...");
 
-
             }
-
 
             File.Delete(yol);
             File.Move(tempFile, yol);
 
         }
 
-
-
     }
 
-
 }
-

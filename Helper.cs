@@ -90,19 +90,20 @@ namespace class_calisma
             }
             if (!harfMi)
             {
-               // Console.Clear();
+                // Console.Clear();
                 Console.WriteLine("Şifreniz en az bir adet harf karakter içermelidir.");
             }
             return harfMi;
         }
         public static bool IlkKarakter(string firtsCharakter)
         {
-            if (!Char.Equals(firtsCharakter[0],'0'))
+            if (!Char.Equals(firtsCharakter[0], '0'))
             {
                 Console.WriteLine("İlk karakter '0' sıfır ile başlamalıdır");
                 return false;
-            }return true;
-        } 
+            }
+            return true;
+        }
 
 
 
