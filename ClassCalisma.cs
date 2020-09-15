@@ -140,8 +140,8 @@ namespace class_calisma
                     // Kisi[] kisiListesi = kisiOkunan.KisileriOku("MyText2.txt");
                     
                     ArrayList kList = kisiOkunan.KisileriOku1("MyText2.txt");
-                    // foreach (Kisi i in kisiListesi)
-                    //     Console.WriteLine(i);
+                    foreach (Kisi i in kList)
+                        Console.WriteLine(i);
 
                     Console.Write("Aramayı Gririniz :");
                     string adi = Console.ReadLine().Trim();
